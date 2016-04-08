@@ -46,6 +46,7 @@ void AstSetUnit2(s8 x, s8 y, u8 type, u8 step);
 void AstAddWave(void);
 u8   AstGetWave(void);
 u8   AstGetWaveMax(void);
+
 bool AstIsEndCnt(void);
 bool AstIsEndWave(void);
 
