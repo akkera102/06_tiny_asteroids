@@ -31,7 +31,7 @@ max stage is 5. UFO and UFO shot dont hit player ship.
 ## Development
 compiler        : windows Arduino IDE 1.6.8(avr-gcc) + 1.0.6(make.exe)
 image converter : python 2.6 + PIL
-etc             : Visual Studio 2015 C#
+etc             : Visual Studio 2015 C#, OpenOffice 4.1.2
 
 
 ## History
