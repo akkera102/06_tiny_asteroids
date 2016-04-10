@@ -4,7 +4,7 @@
 #include "res.h"
 
 //---------------------------------------------------------------------------
-PROGMEM const s8 AstSizeTable[3] = {
+PROGMEM const s8 AstRadiusTable[3] = {
 	8,
 	4,
 	2,
@@ -101,7 +101,7 @@ void AstSetWave(void)
 		}
 		else
 		{
-			AstSetUnit(i, ((RndIsBool() == TRUE) ? 0 : 127), Rnd(63), Rnd(4), 0);
+			AstSetUnit(i, ((RndIsBool() == TRUE) ? 0 : 127), Rnd(64), Rnd(4), 0);
 		}
 	}
 }
@@ -112,11 +112,11 @@ void AstSetUnit(u8 num, s8 x, s8 y, u8 type, u8 step)
 
 	p->fx    = NUM2FIX(x);
 	p->fy    = NUM2FIX(y);
-	p->fmx   = (Rnd((1 + step + Ast.wave) * 4) + (1 + Ast.wave) * 2) * (RndIsBool() == TRUE ? 1 : -1);
-	p->fmy   = (Rnd((1 + step + Ast.wave) * 4) + (1 + Ast.wave) * 2) * (RndIsBool() == TRUE ? 1 : -1);
+	p->fmx   = (Rnd((1 + Ast.wave + step) * 4) + (1 + Ast.wave) * 2) * (RndIsBool() == TRUE ? 1 : -1);
+	p->fmy   = (Rnd((1 + Ast.wave + step) * 4) + (1 + Ast.wave) * 2) * (RndIsBool() == TRUE ? 1 : -1);
 	p->type  = type;
 	p->step  = step;
-	p->r     = (s8)__LPM(AstSizeTable + step);
+	p->r     = (s8)__LPM(AstRadiusTable + step);
 	p->isUse = TRUE;
 
 	Ast.cnt++;

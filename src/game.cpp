@@ -51,9 +51,10 @@ void GameExecReset(void)
 //---------------------------------------------------------------------------
 void GameExecDisp(void)
 {
+	ScoreDraw();
+
 	ChrDraw();
 	BulletDraw();
-	ScoreDraw();
 
 	ChrExec();
 	BulletExec();
