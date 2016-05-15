@@ -12,13 +12,17 @@ void SndInit(void)
 {
 	_Memset(&Snd, 0x00, sizeof(ST_SND));
 
-	pinMode(SND_PIN_CH1, OUTPUT);
-	pinMode(SND_PIN_CH2, OUTPUT);
+	pinMode(SND_PIN1, OUTPUT);
+	Snd.p[0].pPort = portOutputRegister(digitalPinToPort(SND_PIN1));
+	Snd.p[0].mask  = digitalPinToBitMask(SND_PIN1);
 
-	Snd.p[0].pPort = portOutputRegister(digitalPinToPort(SND_PIN_CH1));
-	Snd.p[1].pPort = portOutputRegister(digitalPinToPort(SND_PIN_CH2));
-	Snd.p[0].mask  = digitalPinToBitMask(SND_PIN_CH1);
-	Snd.p[1].mask  = digitalPinToBitMask(SND_PIN_CH2);
+#if defined(ARDUBOY_10)
+
+	pinMode(SND_PIN2, OUTPUT);
+	Snd.p[1].pPort = portOutputRegister(digitalPinToPort(SND_PIN2));
+	Snd.p[1].mask  = digitalPinToBitMask(SND_PIN2);
+
+#endif
 
 	TCCR3A = 0;
 	TCCR3B = 0;
@@ -91,13 +95,20 @@ void SndStopTimer(u8 ch)
 	if(ch == 0)
 	{
 		TIMSK3 &= ~(1 << OCIE3A);
+		*Snd.p[0].pPort &= ~Snd.p[0].mask;
 	}
 	else
 	{
 		TIMSK1 &= ~(1 << OCIE1A);
+
+#if defined(ARDUBOY_10)
+
+		*Snd.p[1].pPort &= ~Snd.p[1].mask;
+
+#endif
+
 	}
 
-	*Snd.p[ch].pPort &= ~Snd.p[ch].mask;
 	Snd.t[ch].isPlay = FALSE;
 }
 //---------------------------------------------------------------------------
@@ -115,7 +126,12 @@ ISR(TIMER3_COMPA_vect)
 // TIMER 1 ch1
 ISR(TIMER1_COMPA_vect)
 {
+
+#if defined(ARDUBOY_10)
+
 	*Snd.p[1].pPort ^= Snd.p[1].mask;
+
+#endif
 
 	if(--Snd.t[1].cnt == 0)
 	{
