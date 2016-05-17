@@ -8,10 +8,10 @@ Please excuse duplicate games. :D
 
 
 ## Installation
-Request : "windows" Arduino IDE 1.6.x
+Request : Arduino IDE 1.6.x
 
 1. download from github
-2. pls edit test.bat for your computer(must change COM port number)
+2. pls edit test.bat(windows) or test.sh(osx) for your computer(must change COM port number)
 3. execute test.bat
 4. play it
 
