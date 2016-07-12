@@ -86,12 +86,12 @@ void ChrExecKey(void)
 		Chr.dir = (Chr.dir + 1) & 0xf;
 	}
 
-	if(rep & KEY_B)
+	if(rep & KEY_A)
 	{
 		ChrExecAccel();
 	}
 
-	if(trg & KEY_A)
+	if(trg & KEY_B)
 	{
 		ChrExecFire();
 	}

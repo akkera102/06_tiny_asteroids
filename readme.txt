@@ -34,6 +34,7 @@ etc             : Visual Studio 2015 C#, OpenOffice 4.1.2
 
 
 ## History
+v1.02 2016/07/12    fix button A, B
 v1.01 2016/05/15    support arduboy 1.0
 v1.00 2016/04/08    first version
 
