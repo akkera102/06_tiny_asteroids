@@ -33,6 +33,10 @@ image converter : python 2.6 + PIL
 etc             : Visual Studio 2015 C#, OpenOffice 4.1.2
 
 
+## License
+GPL v2
+
+
 ## History
 v1.02 2016/07/12    fix button A, B
 v1.01 2016/05/15    support arduboy 1.0
